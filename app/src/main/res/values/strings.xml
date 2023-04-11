@@ -1,4 +1,15 @@
 <resources>
-    <string name="app_name">Background_app</string>
-    <string name="desarrollador">Desarrollado por Grupo 3</string>
+    <string name="app_name">Background app</string>
+    <string name="desarrollador">by GRUPO 3</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">close navigation drawer</string>
+
+    <!--Menu Admin-->
+    <string name="InicioAdmin">Inicio</string>
+    <string name="PerfilAdmin">Perfil</string>
+    <string name="RegistrarAdmin">Registrar</string>
+    <string name="ListarAdmin">Lista de administradores</string>
+    <string name="Salir">Cerrar sesión</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
