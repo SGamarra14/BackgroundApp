@@ -7,11 +7,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 import com.grupo3.background_app.FragmentosAdministrador.InicioAdmin;
 import com.grupo3.background_app.FragmentosAdministrador.ListaAdmin;
 import com.grupo3.background_app.FragmentosAdministrador.PerfilAdmin;
@@ -20,6 +24,8 @@ import com.grupo3.background_app.FragmentosAdministrador.RegistrarAdmin;
 public class MainActivityAdministrador extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,9 @@ public class MainActivityAdministrador extends AppCompatActivity implements Navi
 
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        firebaseAuth = firebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
 
         //fragmento por defecto
         if(savedInstanceState == null) {
@@ -76,5 +85,22 @@ public class MainActivityAdministrador extends AppCompatActivity implements Navi
         drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
+    }
+
+    private void ComprobandoInicioSesion() {
+        if (user != null) {
+            //si el administrador ha iniciado sesion
+            Toast.makeText(this, "Se ha iniciado sesion", Toast.LENGTH_SHORT).show();
+        } else {
+            //si no se ha iniciado sesion es porque el user es cliente
+            startActivity(new Intent(MainActivityAdministrador.this, MainActivity.class));
+            finish();
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        ComprobandoInicioSesion();
+        super.onStart();
     }
 }
