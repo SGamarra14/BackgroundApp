@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">Background app</string>
-    <string name="desarrollador">by GRUPO 3</string>
+    <string name="app_name">Background</string>
+    <string name="app">App</string>
+    <string name="desarrollador">GRUPO 3</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">close navigation drawer</string>
 

@@ -18,14 +18,14 @@ public class Carga extends AppCompatActivity {
         setContentView(R.layout.carga);
 
         //cambio de letra
-        String ubicacion = "fuentes/Akira.otf";
-        String ubicacion1 = "fuentes/AkiraBold.otf";
-        String ubicacion2 = "fuentes/AkiraOutline.otf";
-        String ubicacion3 = "fuentes/AkiraSuperBold.otf";
+        /*String ubicacion = "fuentes/akira.otf";
+        String ubicacion1 = "fuentes/akira_bold.otf";
+        String ubicacion2 = "fuentes/akira_outline.otf";
+        String ubicacion3 = "fuentes/akira_super_bold.otf";
         Typeface tf = Typeface.createFromAsset(Carga.this.getAssets(),ubicacion);
         Typeface tf1 = Typeface.createFromAsset(Carga.this.getAssets(),ubicacion1);
         Typeface tf2 = Typeface.createFromAsset(Carga.this.getAssets(),ubicacion2);
-        Typeface tf3 = Typeface.createFromAsset(Carga.this.getAssets(),ubicacion3);
+        Typeface tf3 = Typeface.createFromAsset(Carga.this.getAssets(),ubicacion3);*/
         //cambio de letra
 
         app_name = findViewById(R.id.app_name);
@@ -43,7 +43,7 @@ public class Carga extends AppCompatActivity {
             }
         }, DURACION);
 
-        app_name.setTypeface(tf);
-        desarrollador.setTypeface(tf);
+        /*app_name.setTypeface(tf);
+        desarrollador.setTypeface(tf);*/
     }
 }
