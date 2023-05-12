@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InicioSesion"
-    android:background="#fff">
+    android:background="#fff"
+    tools:context=".InicioSesion">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -16,27 +16,26 @@
         android:gravity="center">
 
         <TextView
-            android:text="@string/LoginTXT"
             android:textColor="#000"
             android:gravity="center"
             android:textStyle="bold"
             android:textSize="18sp"
+            android:text="@string/LoginTXT"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </TextView>
+            android:layout_height="wrap_content"/>
 
+        <!--animation-->
         <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
             app:lottie_imageAssetsFolder="assets"
-            app:lottie_fileName="carga_animacion.json"
+            app:lottie_fileName="admin.json"
             app:lottie_loop="true"
-            app:lottie_autoPlay="true">
-        </com.airbnb.lottie.LottieAnimationView>
+            app:lottie_autoPlay="true"/>
 
-        <!--correo-->
+        <!-- CORREO ELECTRONICO -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,34 +46,32 @@
                 android:hint="@string/Correo"
                 android:inputType="textEmailAddress"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </EditText>
+                android:layout_height="wrap_content"/>
+
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!--contraseña-->
+        <!-- CONTRASEÑA -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true">
-
+            android:layout_height="wrap_content">
+            
             <EditText
                 android:id="@+id/Password"
                 android:hint="@string/Password"
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </EditText>
-
+                android:layout_height="wrap_content"/>
+            
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/Acceder"
             android:text="@string/Acceder"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </Button>
+            android:layout_height="wrap_content"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 </RelativeLayout>

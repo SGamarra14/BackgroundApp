@@ -1,47 +1,94 @@
 <resources>
     <string name="app_name">Background</string>
-    <string name="app">App</string>
-    <string name="desarrollador">GRUPO 3</string>
+    <string name="app">APP</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">close navigation drawer</string>
+    <string name="navigation_drawer_close">Open navigation close</string>
+    <string name="desarrollador">Grupo 3</string>
 
-    <!--Menu Admin-->
+    <!-- MENU ADMIN -->
     <string name="InicioAdmin">Inicio</string>
     <string name="PerfilAdmin">Perfil</string>
     <string name="RegistrarAdmin">Registrar</string>
     <string name="ListarAdmin">Lista de administradores</string>
-    <string name="Salir">Cerrar sesión</string>
+    <string name="Salir">Cerrar sesion</string>
 
-    <!--MEnu cliente-->
+    <!-- MENU CLIENTE -->
     <string name="Opcionestxt">Opciones</string>
     <string name="InicioCliente">Inicio</string>
 
-    <string name="MasOpcionestxt">Más opciones</string>
+    <string name="MasOpcionestxt">Mas opciones</string>
     <string name="AcercaDe">Acerca de</string>
     <string name="Compartir">Compartir</string>
 
     <string name="Acceder">Acceder</string>
 
-    <!--REGISTRO DE ADMINISTRADORES-->
+
+    <!-- REGISTRO DE ADMINISTRADORES -->
     <string name="RegistroTXT">Registro de administradores</string>
-    <string name="Correo">Correo electónico</string>
-    <string name="Password">Contraseña</string>
+    <string name="Correo">Correo Electronico</string>
+    <string name="Password">Password</string>
     <string name="Nombres">Nombres completos</string>
     <string name="Apellidos">Apellidos completos</string>
     <string name="Edad">Edad</string>
     <string name="FechaRegistro">Fecha de registro</string>
     <string name="Registrar">Registrar</string>
 
-    <!--LOGIN ADMIN-->
+    <!-- LOGIN DE ADMINISTRADORES -->
     <string name="LoginTXT">Login de administradores</string>
     <string name="Ingresar">Ingresar</string>
 
-    <!--CATEGORIAS-->
-    <string name="Eligeunacategoriatxt">Elige una categoria</string>
-    <string name="Peliculas">Películas</string>
-    <string name="Series">Series</string>
-    <string name="Musica">Música</string>
-    <string name="Videojuegos">Videojuegos</string>
+    <!-- CATEGORIAS -->
+    <string name="Eligeunacategoriatxt">Elige categoria</string>
+    <string name="Peliculas">PELICULAS</string>
+    <string name="Series">SERIES</string>
+    <string name="Musica">MUSICA</string>
+    <string name="Videojuegos">VIDEOJUEGOS</string>
+
+    <!-- MENU PARTE SUPERIOR DERECHA -->
+    <string name="Agregar">Agregar</string>
+    <string name="Vista">Vista</string>
+
+
+    <!-- AGREGAR PELICULAS -->
+    <string name="NombreTXTPeliculas">Nombre de imagen</string>
+    <string name="NombrePeliculas">Escriba nombre aqui</string>
+    <string name="VistaPeliculas">0</string>
+    <string name="PublicarPelicula">Publicar</string>
+
+    <!-- AGREGAR MUSICA -->
+    <string name="NombreTXTMusica">Nombre de imagen</string>
+    <string name="NombreMusica">Escriba nombre aqui</string>
+    <string name="VistaMusica">0</string>
+    <string name="PublicarMusica">Publicar</string>
+
+    <!-- AGREGAR SERIES -->
+    <string name="NombreTXTSerie">Nombre de imagen</string>
+    <string name="NombreSerie">Escriba nombre aqui</string>
+    <string name="VistaSerie">0</string>
+    <string name="PublicarSerie">Publicar</string>
+
+    <!-- AGREGAR VIDEOJUEGOS -->
+    <string name="NombreTXTVideojuegos">Nombre de imagen</string>
+    <string name="NombreVideojuegos">Escriba nombre aqui</string>
+    <string name="VistaVideojuegos">0</string>
+    <string name="PublicarVideojuegos">Publicar</string>
+
+
+    <!-- ITEM MUSICA -->
+    <string name="NombreImagenMusica"> -- </string>
+    <string name="Vista_Musica"> -- </string>
+
+    <!-- ITEM SERIE -->
+    <string name="NombreImagenSerie"> -- </string>
+    <string name="Vista_Serie"> -- </string>
+
+    <!-- ITEM PELICULA -->
+    <string name="NombreImagenPelicula"> -- </string>
+    <string name="VistaPelicula"> -- </string>
+
+    <!-- ITEM VIDEOJUEGOS -->
+    <string name="NombreImagenVideojuegos"> -- </string>
+    <string name="VistasVideojuegos"> -- </string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

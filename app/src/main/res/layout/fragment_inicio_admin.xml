@@ -7,12 +7,11 @@
     android:background="#fff"
     tools:context=".FragmentosAdministrador.InicioAdmin">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="10dp" >
 
         <TextView
             android:text="@string/Eligeunacategoriatxt"
@@ -20,10 +19,9 @@
             android:gravity="center"
             android:textSize="25sp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </TextView>
+            android:layout_height="wrap_content"/>
 
-        <!--FILA 1-->
+        <!-- FILA 1 -->
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,7 +29,8 @@
             android:layout_marginTop="10dp"
             android:weightSum="2">
 
-            <!--peliculas-->
+
+            <!-- PELICULAS -->
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -42,8 +41,8 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="180dp"
                     android:layout_height="180dp"
-                    android:src="@drawable/peliculas">
-                </androidx.appcompat.widget.AppCompatImageView>
+                    android:src="@drawable/peliculas"/>
+
 
                 <Button
                     android:id="@+id/Peliculas"
@@ -51,14 +50,12 @@
                     android:background="@drawable/btn_personalizado"
                     android:textColor="#fff"
                     android:layout_marginTop="10dp"
-                    android:layout_marginHorizontal="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </Button>
+                    android:layout_height="wrap_content"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <!--series-->
+            <!-- SERIES -->
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,8 +66,8 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="180dp"
                     android:layout_height="180dp"
-                    android:src="@drawable/series">
-                </androidx.appcompat.widget.AppCompatImageView>
+                    android:src="@drawable/series"/>
+                />
 
                 <Button
                     android:id="@+id/Series"
@@ -78,16 +75,20 @@
                     android:background="@drawable/btn_personalizado"
                     android:textColor="#fff"
                     android:layout_marginTop="10dp"
-                    android:layout_marginHorizontal="5dp"
+
+                    android:layout_marginStart="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </Button>
+                    android:layout_height="wrap_content"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
+
+
+
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <!--FILA 2-->
+        <!-- FILA 2 -->
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -95,7 +96,7 @@
             android:layout_marginTop="10dp"
             android:weightSum="2">
 
-            <!--Musica-->
+            <!-- MUSICA -->
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -106,8 +107,8 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="180dp"
                     android:layout_height="180dp"
-                    android:src="@drawable/musica">
-                </androidx.appcompat.widget.AppCompatImageView>
+                    android:src="@drawable/musica"/>
+                />
 
                 <Button
                     android:id="@+id/Musica"
@@ -115,14 +116,12 @@
                     android:background="@drawable/btn_personalizado"
                     android:textColor="#fff"
                     android:layout_marginTop="10dp"
-                    android:layout_marginHorizontal="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </Button>
+                    android:layout_height="wrap_content"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <!--videojuegos-->
+            <!-- VIDEOJUEGOS -->
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -133,8 +132,8 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="180dp"
                     android:layout_height="180dp"
-                    android:src="@drawable/videojuegos">
-                </androidx.appcompat.widget.AppCompatImageView>
+                    android:src="@drawable/videojuegos"/>
+                />
 
                 <Button
                     android:id="@+id/Videojuegos"
@@ -142,16 +141,15 @@
                     android:background="@drawable/btn_personalizado"
                     android:textColor="#fff"
                     android:layout_marginTop="10dp"
-                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </Button>
+                    android:layout_height="wrap_content"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-
         </androidx.appcompat.widget.LinearLayoutCompat>
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

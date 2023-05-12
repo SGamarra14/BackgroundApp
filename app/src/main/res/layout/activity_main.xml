@@ -17,19 +17,17 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toorbar"
-            android:background="@color/color1"
+            android:id="@+id/toolbar"
+            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-        </androidx.appcompat.widget.Toolbar>
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </FrameLayout>
+            android:layout_height="match_parent"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -41,8 +39,5 @@
         app:headerLayout="@layout/encabezado"
         app:menu="@menu/menu_cliente"
         android:background="#fff"
-        app:itemTextColor="#000"
-        tools:ignore="MissingConstraints">
-    </com.google.android.material.navigation.NavigationView>
-
+        app:itemTextColor="#000"/>
 </androidx.drawerlayout.widget.DrawerLayout>
