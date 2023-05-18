@@ -5,6 +5,10 @@ public class Musica {
     private String nombre;
     private int vistas;
 
+    public Musica() {
+        // Required empty constructor for Firebase Realtime Database
+    }
+
     public Musica(String imagen, String nombre, int vistas) {
         this.imagen = imagen;
         this.nombre = nombre;

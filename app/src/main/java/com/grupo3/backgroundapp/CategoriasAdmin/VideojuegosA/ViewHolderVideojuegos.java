@@ -43,7 +43,7 @@ public class ViewHolderVideojuegos extends RecyclerView.ViewHolder {
         itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                mClickListener.OnItemClick(view,getAdapterPosition());
+                mClickListener.OnItemLongClick(view,getAdapterPosition());
                 return true;
             }
         });

@@ -6,6 +6,10 @@ public class Pelicula {
     private String nombre;
     private int vistas;
 
+    public Pelicula() {
+        // Required empty constructor for Firebase Realtime Database
+    }
+
     public Pelicula(String imagen, String nombre, int vistas) {
         this.imagen = imagen;
         this.nombre = nombre;

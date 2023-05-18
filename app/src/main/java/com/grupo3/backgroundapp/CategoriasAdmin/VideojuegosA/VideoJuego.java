@@ -6,6 +6,10 @@ public class VideoJuego {
     private String nombre;
     private int vistas;
 
+    public VideoJuego() {
+        // Required empty constructor for Firebase Realtime Database
+    }
+
     public VideoJuego(String imagen, String nombre, int vistas) {
         this.imagen = imagen;
         this.nombre = nombre;
