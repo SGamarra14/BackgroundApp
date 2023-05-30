@@ -26,7 +26,6 @@ public class InicioSesion extends AppCompatActivity {
 
     EditText Correo,Password;
     Button Acceder;
-
     FirebaseAuth firebaseAuth;
     ProgressDialog progressDialog;
 
@@ -37,7 +36,7 @@ public class InicioSesion extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar(); //CREAMOS EL ACCIONAR
         assert actionBar != null;  //AFIRMAMOS QUE EL ACTIONBAR NO SE NULO
-        actionBar.setTitle("Iniicio sesion"); //LE ASIGNAMOS UN TITULO
+        actionBar.setTitle("Inicio sesion"); //LE ASIGNAMOS UN TITULO
         actionBar.setDisplayHomeAsUpEnabled(true); //HABILITAMOS EL BOTON DE RETROCESO
         actionBar.setDisplayShowHomeEnabled(true);
 
@@ -48,7 +47,7 @@ public class InicioSesion extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         progressDialog = new ProgressDialog(InicioSesion.this);
-        progressDialog.setMessage("Ingresando espere por favor");
+        progressDialog.setMessage("Ingresando, espere por favor");
         progressDialog.setCancelable(false);
 
         Acceder.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +58,7 @@ public class InicioSesion extends AppCompatActivity {
                 String pass = Password.getText().toString();
 
                 if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()){
-                    Correo.setError("Correo Invalido");
+                    Correo.setError("Correo Inválido");
                     Correo.setFocusable(true);
                 }
                 else if(pass.length()<6){
@@ -104,8 +103,8 @@ public class InicioSesion extends AppCompatActivity {
     private void UsuarioInvalido() {
         AlertDialog.Builder builder = new AlertDialog.Builder(InicioSesion.this);
         builder.setCancelable(false);
-        builder.setTitle("HA OCURRIDO UN ERROR");
-        builder.setMessage("Verifique si el correo o contraseña son correctos")
+        builder.setTitle("Ha ocurrido un error");
+        builder.setMessage("Verifique si el correo o la contraseña son correctos")
                 .setPositiveButton("Entendido", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

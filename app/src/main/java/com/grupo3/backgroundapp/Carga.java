@@ -12,7 +12,6 @@ public class Carga extends AppCompatActivity {
 
     TextView app_name, desarrollador;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

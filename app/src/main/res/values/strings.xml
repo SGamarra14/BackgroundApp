@@ -10,13 +10,13 @@
     <string name="PerfilAdmin">Perfil</string>
     <string name="RegistrarAdmin">Registrar</string>
     <string name="ListarAdmin">Lista de administradores</string>
-    <string name="Salir">Cerrar sesion</string>
+    <string name="Salir">Cerrar sesión</string>
 
     <!-- MENU CLIENTE -->
     <string name="Opcionestxt">Opciones</string>
     <string name="InicioCliente">Inicio</string>
 
-    <string name="MasOpcionestxt">Mas opciones</string>
+    <string name="MasOpcionestxt">Más opciones</string>
     <string name="AcercaDe">Acerca de</string>
     <string name="Compartir">Compartir</string>
 
@@ -25,8 +25,8 @@
 
     <!-- REGISTRO DE ADMINISTRADORES -->
     <string name="RegistroTXT">Registro de administradores</string>
-    <string name="Correo">Correo Electronico</string>
-    <string name="Password">Password</string>
+    <string name="Correo">Correo Electrónico</string>
+    <string name="Password">Contraseña</string>
     <string name="Nombres">Nombres completos</string>
     <string name="Apellidos">Apellidos completos</string>
     <string name="Edad">Edad</string>
@@ -38,11 +38,11 @@
     <string name="Ingresar">Ingresar</string>
 
     <!-- CATEGORIAS -->
-    <string name="Eligeunacategoriatxt">Elige categoria</string>
-    <string name="Peliculas">PELICULAS</string>
-    <string name="Series">SERIES</string>
-    <string name="Musica">MUSICA</string>
-    <string name="Videojuegos">VIDEOJUEGOS</string>
+    <string name="Eligeunacategoriatxt">Elige una categoría</string>
+    <string name="Peliculas">Películas</string>
+    <string name="Series">Series</string>
+    <string name="Musica">Música</string>
+    <string name="Videojuegos">Videojuegos</string>
 
     <!-- MENU PARTE SUPERIOR DERECHA -->
     <string name="Agregar">Agregar</string>
@@ -51,25 +51,25 @@
 
     <!-- AGREGAR PELICULAS -->
     <string name="NombreTXTPeliculas">Nombre de imagen</string>
-    <string name="NombrePeliculas">Escriba nombre aqui</string>
+    <string name="NombrePeliculas">Escriba el nombre aquí</string>
     <string name="VistaPeliculas">0</string>
     <string name="PublicarPelicula">Publicar</string>
 
     <!-- AGREGAR MUSICA -->
     <string name="NombreTXTMusica">Nombre de imagen</string>
-    <string name="NombreMusica">Escriba nombre aqui</string>
+    <string name="NombreMusica">Escriba el nombre aqui</string>
     <string name="VistaMusica">0</string>
     <string name="PublicarMusica">Publicar</string>
 
     <!-- AGREGAR SERIES -->
     <string name="NombreTXTSerie">Nombre de imagen</string>
-    <string name="NombreSerie">Escriba nombre aqui</string>
+    <string name="NombreSerie">Escriba el nombre aquí</string>
     <string name="VistaSerie">0</string>
     <string name="PublicarSerie">Publicar</string>
 
     <!-- AGREGAR VIDEOJUEGOS -->
     <string name="NombreTXTVideojuegos">Nombre de imagen</string>
-    <string name="NombreVideojuegos">Escriba nombre aqui</string>
+    <string name="NombreVideojuegos">Escriba el nombre aqui</string>
     <string name="VistaVideojuegos">0</string>
     <string name="PublicarVideojuegos">Publicar</string>
 
@@ -94,6 +94,24 @@
     <string name="OrdenarTXT">Ordenar en:</string>
     <string name="Dos_Columnas">2 Columnas</string>
     <string name="Tres_Columnas">3 Columnas</string>
+
+    <!--PERFIL-->
+    <string name="PerfilAdministradorTxt">Mi perfil</string>
+    <string name="MiInformacionTxt">Mi información</string>
+    <string name="UIDPerfilTxt">UID:</string>
+    <string name="UIDPerfil"> -- </string>
+    <string name="NombresPerfilTxt">Nombres:</string>
+    <string name="NombresPerfil"> -- </string>
+    <string name="ApellidosPerfilTxt">Apellidos:</string>
+    <string name="ApellidosPerfil"> -- </string>
+    <string name="CorreoPerfilTxt">Correo:</string>
+    <string name="CorreoPerfil"> -- </string>
+    <string name="PasswordPerfilTxt">Contraseña:</string>
+    <string name="PasswordPerfil"> -- </string>
+    <string name="EdadPerfilTxt">Edad:</string>
+    <string name="EdadPerfil"> -- </string>
+    <string name="ActualizarPass">Actualizar contraseña</string>
+    <string name="ActualizarDatos">Actualizar datos</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
