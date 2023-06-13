@@ -113,6 +113,29 @@
     <string name="ActualizarPass">Actualizar contraseña</string>
     <string name="ActualizarDatos">Actualizar datos</string>
 
+    <!--Cambiar contraseña-->
+    <string name="MisCredencialesTXT">Mis credenciales</string>
+    <string name="PassActualTXT">Contraseña actual: </string>
+    <string name="PassActual">*********</string>
+    <string name="ActualPassET">Contraseña actual</string>
+    <string name="NuevoPassET">Nueva contraseña</string>
+    <string name="CAMBIARPASSBTN">Cambiar contraseña</string>
+    <string name="IRINICIOBTN">Volver</string>
+    <string name="NOTATXT">Nota: Si cambia la contraseña la sesión se cerrará automáticamente.</string>
+
+    <!--Administrador item-->
+    <string name="NombresAdmin">Nombres</string>
+    <string name="CorreoAdmin">Correo electrónico</string>
+    <string name="buscar_administrador">Buscar</string>
+
+    <!--Detalle administrador-->
+    <string name="DetalletTXT">Información del administrador</string>
+    <string name="UidDetalleAdmin">UID</string>
+    <string name="NombresDetalleAdmin">Nombre</string>
+    <string name="ApellidosDetalleAdmin">Apellido</string>
+    <string name="CorreoDetalleAdmin">Correo</string>
+    <string name="EdadDetalleAdmin">Edad</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

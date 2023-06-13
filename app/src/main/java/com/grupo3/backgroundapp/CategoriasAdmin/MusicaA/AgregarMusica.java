@@ -219,15 +219,19 @@ public class AgregarMusica extends AppCompatActivity {
         String mNombre = NombreMusica.getText().toString();
 
         if (mNombre.equals("") || RutaArchivoUri == null) {
-            if (RutaArchivoUri == null) Toast.makeText(this, "Asigne una imagen", Toast.LENGTH_SHORT).show();
-            if (mNombre.equals("")) Toast.makeText(this, "Asigne un nombre", Toast.LENGTH_SHORT).show();
+            if (RutaArchivoUri == null) Toast.makeText
+                    (this, "Asigne una imagen", Toast.LENGTH_SHORT).show();
+            if (mNombre.equals("")) Toast.makeText
+                    (this, "Asigne un nombre", Toast.LENGTH_SHORT).show();
         } else {
             progressDialog.setTitle("Espere por favor");
             progressDialog.setMessage("Subiendo la imagen...");
             progressDialog.show();
             progressDialog.show();
             progressDialog.setCancelable(false);
-            StorageReference storageReference2 = mStorageReference.child(RutaDeAlmacenamiento+System.currentTimeMillis()+"."+ObtenerExtensionDelArchivo(RutaArchivoUri));
+            StorageReference storageReference2 =
+                    mStorageReference.child(RutaDeAlmacenamiento+System.currentTimeMillis()
+                            +"."+ObtenerExtensionDelArchivo(RutaArchivoUri));
             storageReference2.putFile(RutaArchivoUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -247,9 +251,12 @@ public class AgregarMusica extends AppCompatActivity {
                             DatabaseReference.child(ID_IMAGEN).setValue(musica);
 
                             progressDialog.dismiss();
-                            Toast.makeText(AgregarMusica.this, "Subido exitosamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText
+                                    (AgregarMusica.this, "Subido exitosamente",
+                                            Toast.LENGTH_SHORT).show();
 
-                            startActivity(new Intent(AgregarMusica.this, MusicaA.class));
+                            startActivity
+                                    (new Intent(AgregarMusica.this, MusicaA.class));
                             finish();
 
                         }
@@ -257,7 +264,9 @@ public class AgregarMusica extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(AgregarMusica.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText
+                                    (AgregarMusica.this, ""+e.getMessage(),
+                                            Toast.LENGTH_SHORT).show();
                         }
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override

@@ -82,9 +82,11 @@ public class InicioSesion extends AppCompatActivity {
                         if(task.isSuccessful()){
                             progressDialog.dismiss();
                             FirebaseUser user = firebaseAuth.getCurrentUser();
-                            startActivity(new Intent(InicioSesion.this,MainActivityAdministrador.class));
+                            startActivity(new Intent(InicioSesion.this,
+                                    MainActivityAdministrador.class));
                             assert user != null;
-                            Toast.makeText(InicioSesion.this,"Bienvenido "+user.getEmail(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(InicioSesion.this,"Bienvenido "+
+                                    user.getEmail(), Toast.LENGTH_SHORT).show();
                             finish();
                         } else{
                             progressDialog.dismiss();

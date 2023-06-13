@@ -18,18 +18,22 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.L;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -59,7 +63,7 @@ public class PerfilAdmin extends Fragment {
     FirebaseUser user;
     DatabaseReference BASE_DE_DATOS_ADMINISTRADORES;
     StorageReference storageReference;
-    String rutaDeAlmacenamiento = "Fotos_perfil_administradores/*"; //crea una carpeta en firebase storage
+    String rutaDeAlmacenamiento = "Fotos_perfil_administradores/*"; //Carpeta en firebase storage
 
     private Uri imagen_uri;
     private String imagen_perfil;
@@ -133,6 +137,21 @@ public class PerfilAdmin extends Fragment {
             }
         });
 
+        ActualizarPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), Cambio_password.class));
+                getActivity().finish();
+            }
+        });
+
+        ActualizarDatos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditarDatos();
+            }
+        });
+
         FotoPerfilImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,6 +160,155 @@ public class PerfilAdmin extends Fragment {
         });
 
         return view;
+    }
+
+    private void EditarDatos() {
+        String [] opciones = {"Editar nombres", "Editar apellidos", "Editar edad"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Elegir opción: ");
+        builder.setItems(opciones, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                if (i == 0) {
+                    EditarNombres();
+                } else if (i == 1) {
+                    EditarApellidos();
+                } else if (i == 2) {
+                    EditarEdad();
+                }
+            }
+        });
+        builder.create().show();
+    }
+
+    private void EditarEdad() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Actualizar información");
+        LinearLayoutCompat linearLayoutCompat = new LinearLayoutCompat(getActivity());
+        linearLayoutCompat.setOrientation(LinearLayoutCompat.VERTICAL);
+        linearLayoutCompat.setPadding(10, 10, 10, 10);
+        final EditText editText = new EditText(getActivity());
+        editText.setHint("Ingrese nuevo dato...");
+        editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+        linearLayoutCompat.addView(editText);
+        builder.setView(linearLayoutCompat);
+        builder.setPositiveButton("Actualizar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String nuevoDato = editText.getText().toString().trim();
+                if (!nuevoDato.equals("")) {
+                    int nuevoDatoint = Integer.parseInt(nuevoDato);
+                    HashMap<String, Object> resultado = new HashMap<>();
+                    resultado.put("EDAD", nuevoDatoint);
+                    BASE_DE_DATOS_ADMINISTRADORES.child(user.getUid()).updateChildren(resultado).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(getActivity(), "Nombre actualizado", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    Toast.makeText(getActivity(), "Campo vacío", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getActivity(), "Cancelado por el usuario", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.create().show();
+    }
+
+    private void EditarApellidos() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Actualizar información");
+        LinearLayoutCompat linearLayoutCompat = new LinearLayoutCompat(getActivity());
+        linearLayoutCompat.setOrientation(LinearLayoutCompat.VERTICAL);
+        linearLayoutCompat.setPadding(10, 10, 10, 10);
+        final EditText editText = new EditText(getActivity());
+        editText.setHint("Ingrese nuevo dato...");
+        editText.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS|InputType.TYPE_TEXT_FLAG_AUTO_CORRECT);
+        linearLayoutCompat.addView(editText);
+        builder.setView(linearLayoutCompat);
+        builder.setPositiveButton("Actualizar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String nuevoDato = editText.getText().toString().trim();
+                if (!nuevoDato.equals("")) {
+                    HashMap<String, Object> resultado = new HashMap<>();
+                    resultado.put("APELLIDOS", nuevoDato);
+                    BASE_DE_DATOS_ADMINISTRADORES.child(user.getUid()).updateChildren(resultado).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(getActivity(), "Apellido actualizado", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    Toast.makeText(getActivity(), "Campo vacío", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getActivity(), "Cancelado por el usuario", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.create().show();
+    }
+
+    private void EditarNombres() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Actualizar información");
+        LinearLayoutCompat linearLayoutCompat = new LinearLayoutCompat(getActivity());
+        linearLayoutCompat.setOrientation(LinearLayoutCompat.VERTICAL);
+        linearLayoutCompat.setPadding(10, 10, 10, 10);
+        final EditText editText = new EditText(getActivity());
+        editText.setHint("Ingrese nuevo dato...");
+        editText.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS|InputType.TYPE_TEXT_FLAG_AUTO_CORRECT);
+        linearLayoutCompat.addView(editText);
+        builder.setView(linearLayoutCompat);
+        builder.setPositiveButton("Actualizar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String nuevoDato = editText.getText().toString().trim();
+                if (!nuevoDato.equals("")) {
+                    HashMap<String, Object> resultado = new HashMap<>();
+                    resultado.put("NOMBRES", nuevoDato);
+                    BASE_DE_DATOS_ADMINISTRADORES.child(user.getUid()).updateChildren(resultado).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(getActivity(), "Nombre actualizado", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    Toast.makeText(getActivity(), "Campo vacío", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getActivity(), "Cancelado por el usuario", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.create().show();
     }
 
     private void CambiarImagenPerfilAdministrador() {
@@ -260,9 +428,11 @@ public class PerfilAdmin extends Fragment {
             });
 
     private void ActualizarImagenBD(Uri uri) {
-        String Ruta_de_Archivo_y_nombre = rutaDeAlmacenamiento + "" + imagen_perfil + "-" + user.getUid();
+        String Ruta_de_Archivo_y_nombre =
+                rutaDeAlmacenamiento + "" + imagen_perfil + "-" + user.getUid();
         StorageReference storageReference2 = storageReference.child(Ruta_de_Archivo_y_nombre);
-        storageReference2.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        storageReference2.putFile(uri).addOnSuccessListener
+                (new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Task <Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
@@ -278,17 +448,20 @@ public class PerfilAdmin extends Fragment {
                         public void onSuccess(Void unused) {
                             startActivity(new Intent(getActivity(), MainActivityAdministrador.class));
                             getActivity().finish();
-                            Toast.makeText(getActivity(), "Imagen de perfil actualizada", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Imagen de perfil actualizada",
+                                    Toast.LENGTH_SHORT).show();
                         }
                     })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getActivity(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), "" + e.getMessage(),
+                                            Toast.LENGTH_SHORT).show();
                                 }
                             });
                 } else {
-                    Toast.makeText(getActivity(), "Ha ocurrido un error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Ha ocurrido un error",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {

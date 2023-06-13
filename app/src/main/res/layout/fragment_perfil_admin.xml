@@ -11,26 +11,34 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="7dp"
+        android:padding="10dp"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/PerfilAdministradorTxt"
+            android:textStyle="bold"
             android:textSize="20sp"
             android:layout_gravity="center"/>
         
-        <androidx.appcompat.widget.AppCompatImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/FotoPerfilImg"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
             android:src="@drawable/perfil"/>
+
+        <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#000"
+        android:layout_marginTop="10dp"/>
         
         <TextView
             android:text="@string/MiInformacionTxt"
+            android:textStyle="bold"
             android:textSize="20sp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"

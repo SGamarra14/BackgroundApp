@@ -78,7 +78,8 @@ public class MusicaA extends AppCompatActivity {
 
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Musica, ViewHolderMusica>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull ViewHolderMusica viewHolderMusica, int i, @NonNull Musica musica) {
+            protected void onBindViewHolder
+                    (@NonNull ViewHolderMusica viewHolderMusica, int i, @NonNull Musica musica) {
                 viewHolderMusica.SeteoMusica(
                         getApplicationContext(),
                         musica.getNombre(),

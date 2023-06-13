@@ -220,15 +220,18 @@ public class AgregarVideojuegos extends AppCompatActivity {
         String mNombre = NombreImagenVideojuegos.getText().toString();
 
         if (mNombre.equals("") || RutaArchivoUri == null) {
-            if (RutaArchivoUri == null) Toast.makeText(this, "Asigne una imagen", Toast.LENGTH_SHORT).show();
-            if (mNombre.equals("")) Toast.makeText(this, "Asigne un nombre", Toast.LENGTH_SHORT).show();
+            if (RutaArchivoUri == null) Toast.makeText(this, "Asigne una imagen",
+                    Toast.LENGTH_SHORT).show();
+            if (mNombre.equals("")) Toast.makeText(this, "Asigne un nombre",
+                    Toast.LENGTH_SHORT).show();
         } else {
             progressDialog.setTitle("Espere por favor");
             progressDialog.setMessage("Subiendo la imagen VIDEOUJEGSO...");
             progressDialog.show();
             progressDialog.show();
             progressDialog.setCancelable(false);
-            StorageReference storageReference2 = mStorageReference.child(RutaDeAlmacenamiento+System.currentTimeMillis()+"."+ObtenerExtensionDelArchivo(RutaArchivoUri));
+            StorageReference storageReference2 = mStorageReference.child(RutaDeAlmacenamiento
+                    + System.currentTimeMillis()+"."+ObtenerExtensionDelArchivo(RutaArchivoUri));
             storageReference2.putFile(RutaArchivoUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -242,15 +245,18 @@ public class AgregarVideojuegos extends AppCompatActivity {
                             String mVista = VistaVideojuegos.getText().toString();
                             int VISTA = Integer.parseInt(mVista);
 
-                            VideoJuego videoJuego = new VideoJuego(downloadUri.toString(),mNombre,VISTA);
+                            VideoJuego videoJuego =
+                                    new VideoJuego(downloadUri.toString(),mNombre,VISTA);
                             String ID_IMAGEN = DatabaseReference.push().getKey();
 
                             DatabaseReference.child(ID_IMAGEN).setValue(videoJuego);
 
                             progressDialog.dismiss();
-                            Toast.makeText(AgregarVideojuegos.this, "Subido exitosamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AgregarVideojuegos.this,
+                                    "Subido exitosamente", Toast.LENGTH_SHORT).show();
 
-                            startActivity(new Intent(AgregarVideojuegos.this, VideojuegosA.class));
+                            startActivity(new Intent(AgregarVideojuegos.this,
+                                    VideojuegosA.class));
                             finish();
 
                         }

@@ -101,7 +101,6 @@ public class RegistrarAdmin extends Fragment {
     }
 
     private void RegistroAdministradores(String correo, String pass) {
-
         progressDialog.show();
         auth.createUserWithEmailAndPassword(correo,pass)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -135,20 +134,24 @@ public class RegistrarAdmin extends Fragment {
 
                             //Iniciacializar Database
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference reference = database.getReference("BASE DE DATOS ADMINISTRADORES");
+                            DatabaseReference reference =
+                                    database.getReference("BASE DE DATOS ADMINISTRADORES");
                             reference.child(UID).setValue(Administradores);
                             startActivity(new Intent(getActivity(), MainActivityAdministrador.class));
-                            Toast.makeText(getActivity(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
+                            Toast.makeText
+                                    (getActivity(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
                             getActivity().finish();
                         } else{
                             progressDialog.dismiss();
-                            Toast.makeText(getActivity(),"Ha ocurrido un error",Toast.LENGTH_SHORT).show();
+                            Toast.makeText
+                                    (getActivity(),"Ha ocurrido un error",Toast.LENGTH_SHORT).show();
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getActivity(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText
+                                (getActivity(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 

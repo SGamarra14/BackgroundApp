@@ -48,6 +48,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.3.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.firebaseui:firebase-ui-database:8.0.0' /*llamar imagenes de firebase*/
+    implementation 'de.hdodenhof:circleimageview:3.1.0' /*cambia a forma circular las imagenes*/
 }
 
 apply plugin: 'com.android.application'

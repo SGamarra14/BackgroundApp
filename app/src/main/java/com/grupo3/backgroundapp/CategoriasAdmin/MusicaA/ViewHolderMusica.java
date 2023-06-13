@@ -18,7 +18,7 @@ public class ViewHolderMusica extends RecyclerView.ViewHolder{
     private ViewHolderMusica.ClickListener mClickListener;
 
     public interface ClickListener{
-        void OnItemClick(View view, int position); /*ADMIN PRESIONA NORMAL EL ITEM*/
+        void OnItemClick(View view, int position); /*ADMIN PRESIONA EL ITEM*/
         void OnItemLongClick(View view, int position); /*ADMIN MANTIENE PRESIONADO EL ITEM*/
     }
 
@@ -58,9 +58,7 @@ public class ViewHolderMusica extends RecyclerView.ViewHolder{
         NombreImagen_Musica = mView.findViewById(R.id.NombreImagen_Musica);
         Vista_Musica = mView.findViewById(R.id.Vista_Musica);
 
-
         NombreImagen_Musica.setText(nombre);
-
 
         //CONVERTIR A STRING EL PARAMETRO VISTA
         String VistaString = String.valueOf(vista);

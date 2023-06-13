@@ -87,10 +87,10 @@ public class MainActivityAdministrador extends AppCompatActivity implements Navi
     }
 
     private void ComprobandoInicioSesion(){
-        if(user!=null){
-            //Si el administrador a iniciado sesion
-            Toast.makeText(this,"Se ha iniciado sesión", Toast.LENGTH_SHORT).show();
-        } else{
+            if(user!=null){
+                //Si el administrador a iniciado sesion
+                Toast.makeText(this,"Se ha iniciado sesión", Toast.LENGTH_SHORT).show();
+            } else {
             //Si no se ha iniciado sesion, es porque el usuario es un cliente
             startActivity(new Intent(MainActivityAdministrador.this,MainActivity.class));
             finish();
