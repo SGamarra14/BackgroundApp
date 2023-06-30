@@ -1,6 +1,4 @@
-package com.grupo3.backgroundapp.CategoriasAdmin.VideojuegosA;
-
-import static com.google.firebase.storage.FirebaseStorage.getInstance;
+package com.grupo3.backgroundapp.CategoriasCliente;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -26,21 +24,17 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
-import com.grupo3.backgroundapp.CategoriasAdmin.PeliculasA.PeliculasA;
+import com.grupo3.backgroundapp.CategoriasAdmin.VideojuegosA.AgregarVideojuegos;
+import com.grupo3.backgroundapp.CategoriasAdmin.VideojuegosA.VideoJuego;
+import com.grupo3.backgroundapp.CategoriasAdmin.VideojuegosA.VideojuegosA;
+import com.grupo3.backgroundapp.CategoriasAdmin.VideojuegosA.ViewHolderVideojuegos;
+import com.grupo3.backgroundapp.DetalleCliente.DetalleCliente;
 import com.grupo3.backgroundapp.R;
 
-public class VideojuegosA extends AppCompatActivity {
-
-    RecyclerView recyclerViewVideojuego;
+public class VideojuegosCliente extends AppCompatActivity {
+    RecyclerView recyclerViewVideojuegoC;
     FirebaseDatabase mFirebaseDataBase;
     DatabaseReference mRef;
 
@@ -53,7 +47,7 @@ public class VideojuegosA extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_videojuegos);
+        setContentView(R.layout.activity_videojuegos_cliente);
 
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
@@ -61,13 +55,13 @@ public class VideojuegosA extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        recyclerViewVideojuego = findViewById(R.id.recyclerViewVideoJuego);
-        recyclerViewVideojuego.setHasFixedSize(true);
+        recyclerViewVideojuegoC = findViewById(R.id.recyclerViewVideoJuegoC);
+        recyclerViewVideojuegoC.setHasFixedSize(true);
 
         mFirebaseDataBase = FirebaseDatabase.getInstance();
         mRef = mFirebaseDataBase.getReference("VIDEOJUEGOS");
 
-        dialog = new Dialog(VideojuegosA.this);
+        dialog = new Dialog(VideojuegosCliente.this);
 
         ListarImagenesVideojuego();
     }
@@ -96,106 +90,48 @@ public class VideojuegosA extends AppCompatActivity {
                 viewHolderVideoJuego.setOnClickListener(new ViewHolderVideojuegos.ClickListener() {
                     @Override
                     public void OnItemClick(View view, int position) {
-                        Toast.makeText(VideojuegosA.this, "Item click", Toast.LENGTH_SHORT).show();
+                        //OBTENER LOS DATOS DE LA IMAGEN
+                        String Imagen= getItem(position).getImagen();
+                        String Nombres= getItem(position).getNombre();
+                        int Vistas= getItem(position).getVistas();
+
+                        //CONVERTIR A STRING LA VISTA
+                        String VistaString= String.valueOf(Vistas);
+
+                        //PASAMOS A LA ACTIVIDAD DETALLE CLIENTE
+                        Intent intent = new Intent(VideojuegosCliente.this, DetalleCliente.class);
+
+                        //DATOS A PASAR
+                        intent.putExtra("Imagen",Imagen);
+                        intent.putExtra("Nombre",Nombres);
+                        intent.putExtra("Vista",Vistas);
+
+                        startActivity(intent);
                     }
 
                     @Override
                     public void OnItemLongClick(View view, int position) {
 
-                        final String Nombre = getItem(position).getNombre();
-                        final String Imagen = getItem(position).getImagen();
-                        int Vista = getItem(position).getVistas();
-                        String VistaString = String.valueOf(Vista);
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(VideojuegosA.this);
-
-                        String [] opciones = {"Actualizar", "Eliminar"};
-
-                        builder.setItems(opciones, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                if (i == 0) {
-                                    Intent intent = new Intent(VideojuegosA.this, AgregarVideojuegos.class);
-                                    intent.putExtra("NombreEnviado", Nombre);
-                                    intent.putExtra("ImagenEnviada", Imagen);
-                                    intent.putExtra("VistaEnviada", VistaString);
-                                    startActivity(intent);
-                                }
-                                if (i == 1) {
-                                    EliminarDatos(Nombre, Imagen);
-                                }
-                            }
-                        });
-                        builder.create().show();
                     }
                 });
                 return viewHolderVideoJuego;
             }
         };
         //al iniciar se lista en 2 columnas
-        sharedPreferences = VideojuegosA.this.getSharedPreferences("VIDEOJUEGOS", MODE_PRIVATE);
+        sharedPreferences = VideojuegosCliente.this.getSharedPreferences("VIDEOJUEGOS", MODE_PRIVATE);
         String ordenar_en = sharedPreferences.getString("Ordenar", "Dos");
 
         //elegir ordenar por 2 o 3 columnas
         if (ordenar_en.equals("Dos")) {
-            recyclerViewVideojuego.setLayoutManager(new GridLayoutManager(VideojuegosA.this, 2));
+            recyclerViewVideojuegoC.setLayoutManager(new GridLayoutManager(VideojuegosCliente.this, 2));
             firebaseRecyclerAdapter.startListening();
-            recyclerViewVideojuego.setAdapter(firebaseRecyclerAdapter);
+            recyclerViewVideojuegoC.setAdapter(firebaseRecyclerAdapter);
         } else if (ordenar_en.equals("Tres")) {
-            recyclerViewVideojuego.setLayoutManager(new GridLayoutManager(VideojuegosA.this, 3));
+            recyclerViewVideojuegoC.setLayoutManager(new GridLayoutManager(VideojuegosCliente.this, 3));
             firebaseRecyclerAdapter.startListening();
-            recyclerViewVideojuego.setAdapter(firebaseRecyclerAdapter);
+            recyclerViewVideojuegoC.setAdapter(firebaseRecyclerAdapter);
         }
-    }
-
-    private void EliminarDatos (final String NombreActual, final String ImagenActual){
-        AlertDialog.Builder builder = new AlertDialog.Builder(VideojuegosA.this);
-        builder.setTitle("Eliminar");
-        builder.setMessage("¿Desea eliminar la imagen?");
-
-        builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //ELIMINA DE LA BD
-                Query query = mRef.orderByChild("nombre").equalTo(NombreActual);
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot ds : snapshot.getChildren()){
-                            ds.getRef().removeValue();
-                        }
-                        Toast.makeText(VideojuegosA.this, "La imagen ha sido eliminada", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(VideojuegosA.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                StorageReference ImagenSeleccionada = getInstance().getReferenceFromUrl(ImagenActual);
-                ImagenSeleccionada.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(VideojuegosA.this, "Imagen eliminada", Toast.LENGTH_SHORT).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(VideojuegosA.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
-
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(VideojuegosA.this, "Cancelado", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        builder.create().show();
     }
 
     @Override
@@ -209,21 +145,14 @@ public class VideojuegosA extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_agregar,menu);
         menuInflater.inflate(R.menu.menu_vista,menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.Agregar:
-                startActivity(new Intent(VideojuegosA.this, AgregarVideojuegos.class));
-                finish();
-                break;
-            case R.id.Vista:
-                Ordenar_Imagenes();
-                break;
+        if (item.getItemId() == R.id.Vista) {
+            Ordenar_Imagenes();
         }
         return super.onOptionsItemSelected(item);
     }

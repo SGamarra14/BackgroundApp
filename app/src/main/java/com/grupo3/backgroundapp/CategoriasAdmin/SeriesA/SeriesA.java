@@ -148,6 +148,7 @@ public class SeriesA extends AppCompatActivity {
         }
     }
 
+
     private void EliminarDatos (final String NombreActual, final String ImagenActual){
         AlertDialog.Builder builder = new AlertDialog.Builder(SeriesA.this);
         builder.setTitle("Eliminar");
@@ -196,6 +197,14 @@ public class SeriesA extends AppCompatActivity {
         });
 
         builder.create().show();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(firebaseRecyclerAdapter!=null){
+            firebaseRecyclerAdapter.startListening();
+        }
     }
 
     @Override

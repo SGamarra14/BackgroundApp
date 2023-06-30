@@ -201,6 +201,14 @@ public class MusicaA extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        if(firebaseRecyclerAdapter!=null){
+            firebaseRecyclerAdapter.startListening();
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_agregar,menu);
