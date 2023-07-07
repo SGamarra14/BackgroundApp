@@ -1,14 +1,13 @@
-package com.grupo3.backgroundapp.CategoriasCliente;
+package com.grupo3.backgroundapp.CategoriasClienteFirebase;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -21,27 +20,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.grupo3.backgroundapp.CategoriasAdmin.MusicaA.AgregarMusica;
-import com.grupo3.backgroundapp.CategoriasAdmin.MusicaA.Musica;
-import com.grupo3.backgroundapp.CategoriasAdmin.MusicaA.MusicaA;
-import com.grupo3.backgroundapp.CategoriasAdmin.MusicaA.ViewHolderMusica;
-import com.grupo3.backgroundapp.CategoriasClienteFirebase.ListaCategoriaFirebase;
+import com.grupo3.backgroundapp.CategoriasCliente.MusicaCliente;
 import com.grupo3.backgroundapp.DetalleCliente.DetalleCliente;
 import com.grupo3.backgroundapp.R;
 
-public class MusicaCliente extends AppCompatActivity {
-    RecyclerView recyclerViewMusicaC;
-    FirebaseDatabase mFirebaseDataBase;
-    DatabaseReference mRef;
+public class ListaCategoriaFirebase extends AppCompatActivity {
 
-    FirebaseRecyclerAdapter<Musica, ViewHolderMusica> firebaseRecyclerAdapter;
-    FirebaseRecyclerOptions<Musica> options;
+    LinearLayoutManager linearLayoutManager;
+    RecyclerView recyclerViewCat_Elegido;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
+    FirebaseRecyclerAdapter<ImgCatFirebaseElegida, ViewHolderImgCatFElegida> firebaseRecyclerAdapter;
+    FirebaseRecyclerOptions<ImgCatFirebaseElegida> options;
 
     SharedPreferences sharedPreferences;
     Dialog dialog;
@@ -49,48 +45,51 @@ public class MusicaCliente extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_musica_cliente);
+        setContentView(R.layout.activity_lista_categoria_firebase);
+
+        String BD_CAT_FIREBASE = getIntent().getStringExtra("NOMBRE_CATEGORIA");
 
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.setTitle("Musica");
-        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle("Lista_Imágenes");
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
 
-        recyclerViewMusicaC = findViewById(R.id.recyclerViewMusicaC);
-        recyclerViewMusicaC.setHasFixedSize(true);
+        recyclerViewCat_Elegido = findViewById(R.id.recyclerViewCat_Elegido);
+        recyclerViewCat_Elegido.setHasFixedSize(true);
 
-        mFirebaseDataBase = FirebaseDatabase.getInstance();
-        mRef = mFirebaseDataBase.getReference("MUSICA");
+        firebaseDatabase = FirebaseDatabase.getInstance();
 
-        dialog = new Dialog(MusicaCliente.this);
+        databaseReference = firebaseDatabase.getReference("CATEGORIA_SUBIDAS_FIREBASE").child(BD_CAT_FIREBASE);
 
-        ListarImagenesMusica();
+        dialog = new Dialog(ListaCategoriaFirebase.this);
+
+        ListarCategoriaSeleccionada();
+
     }
 
-    private void ListarImagenesMusica() {
-        options = new FirebaseRecyclerOptions.Builder<Musica>().setQuery(mRef, Musica.class).build();
+    private void ListarCategoriaSeleccionada() {
+        options = new FirebaseRecyclerOptions.Builder<ImgCatFirebaseElegida>().setQuery(databaseReference, ImgCatFirebaseElegida.class).build();
 
-        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Musica, ViewHolderMusica>(options) {
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<ImgCatFirebaseElegida, ViewHolderImgCatFElegida>(options) {
             @Override
-            protected void onBindViewHolder
-                    (@NonNull ViewHolderMusica viewHolderMusica, int i, @NonNull Musica musica) {
-                viewHolderMusica.SeteoMusica(
+            protected void onBindViewHolder(@NonNull ViewHolderImgCatFElegida viewHolderImgCatFElegida, int i, @NonNull ImgCatFirebaseElegida imgCatFirebaseElegida) {
+                viewHolderImgCatFElegida.SeteoCategoriaFElegida(
                         getApplicationContext(),
-                        musica.getNombre(),
-                        musica.getVistas(),
-                        musica.getImagen()
+                        imgCatFirebaseElegida.getNombre(),
+                        imgCatFirebaseElegida.getVistas(),
+                        imgCatFirebaseElegida.getImagen()
                 );
             }
-
             @NonNull
             @Override
-            public ViewHolderMusica onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public ViewHolderImgCatFElegida onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 //INFLAR EN ITEM
-                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_musica,parent,false);
-                ViewHolderMusica viewHolderMusica = new ViewHolderMusica(itemView);
+                View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.img_cat_f_elegida,parent,false);
 
-                viewHolderMusica.setOnClickListener(new ViewHolderMusica.ClickListener() {
+                ViewHolderImgCatFElegida viewHolderImgCatFElegida = new ViewHolderImgCatFElegida(itemView);
+
+                viewHolderImgCatFElegida.setOnClickListener(new ViewHolderImgCatFElegida.ClickListener() {
                     @Override
                     public void OnItemClick(View view, int position) {
                         //OBTENER LOS DATOS DE LA IMAGEN
@@ -102,47 +101,54 @@ public class MusicaCliente extends AppCompatActivity {
                         String VistaString= String.valueOf(Vistas);
 
                         //PASAMOS A LA ACTIVIDAD DETALLE CLIENTE
-                        Intent intent = new Intent(MusicaCliente.this, DetalleCliente.class);
+                        Intent intent = new Intent(ListaCategoriaFirebase.this, DetalleCliente.class);
 
                         //DATOS A PASAR
                         intent.putExtra("Imagen",Imagen);
                         intent.putExtra("Nombre",Nombres);
-                        intent.putExtra("Vista",Vistas);
+                        intent.putExtra("Vista",VistaString);
 
                         startActivity(intent);
+
                     }
 
-                    @Override
                     public void OnItemLongClick(View view, int position) {
-
 
                     }
                 });
-                return viewHolderMusica;
+
+                return viewHolderImgCatFElegida;
             }
         };
+
+            /*recyclerViewCat_Elegido.setLayoutManager(new GridLayoutManager(ListaCategoriaFirebase.this, 2));
+            firebaseRecyclerAdapter.startListening();
+            recyclerViewCat_Elegido.setAdapter(firebaseRecyclerAdapter);*/
+
         //al iniciar se lista en 2 columnas
-        sharedPreferences = MusicaCliente.this.getSharedPreferences("MUSICA", MODE_PRIVATE);
+        sharedPreferences = ListaCategoriaFirebase.this.getSharedPreferences("MUSICA", MODE_PRIVATE);
         String ordenar_en = sharedPreferences.getString("Ordenar", "Dos");
 
         //elegir ordenar por 2 o 3 columnas
         if (ordenar_en.equals("Dos")) {
-            recyclerViewMusicaC.setLayoutManager(new GridLayoutManager(MusicaCliente.this, 2));
+            recyclerViewCat_Elegido.setLayoutManager(new GridLayoutManager(ListaCategoriaFirebase.this, 2));
             firebaseRecyclerAdapter.startListening();
-            recyclerViewMusicaC.setAdapter(firebaseRecyclerAdapter);
-        } else if (ordenar_en.equals("Tres")) {
-            recyclerViewMusicaC.setLayoutManager(new GridLayoutManager(MusicaCliente.this, 3));
-            firebaseRecyclerAdapter.startListening();
-            recyclerViewMusicaC.setAdapter(firebaseRecyclerAdapter);
+            recyclerViewCat_Elegido.setAdapter(firebaseRecyclerAdapter);
         }
+        else if (ordenar_en.equals("Tres")) {
+            recyclerViewCat_Elegido.setLayoutManager(new GridLayoutManager(ListaCategoriaFirebase.this, 2));
+            firebaseRecyclerAdapter.startListening();
+            recyclerViewCat_Elegido.setAdapter(firebaseRecyclerAdapter);
+        }
+
     }
 
     @Override
     protected void onStart() {
-        super.onStart();
-        if(firebaseRecyclerAdapter!=null){
+        if (firebaseRecyclerAdapter != null){
             firebaseRecyclerAdapter.startListening();
         }
+        super.onStart();
     }
 
     @Override
@@ -164,7 +170,7 @@ public class MusicaCliente extends AppCompatActivity {
 
         //CAMBIO DE LETRA
         String ubicacion = "fuentes/sans_negrita.ttf";
-        Typeface tf = Typeface.createFromAsset(MusicaCliente.this.getAssets(),ubicacion);
+        Typeface tf = Typeface.createFromAsset(ListaCategoriaFirebase.this.getAssets(),ubicacion);
         //CAMBIO DE LETRA
 
         //DECLARAMOS LAS VISTAS
@@ -207,7 +213,7 @@ public class MusicaCliente extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        onBackPressed();
+
         return super.onSupportNavigateUp();
     }
 }

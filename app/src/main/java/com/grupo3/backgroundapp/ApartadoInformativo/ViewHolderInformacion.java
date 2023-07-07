@@ -1,33 +1,30 @@
-package com.grupo3.backgroundapp.Categorias.Cat_Dispositivo;
+package com.grupo3.backgroundapp.ApartadoInformativo;
 
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.grupo3.backgroundapp.R;
 import com.squareup.picasso.Picasso;
 
-public class ViewHolderCD  extends RecyclerView.ViewHolder {
+public class ViewHolderInformacion extends RecyclerView.ViewHolder {
 
     View mView;
 
-    private ViewHolderCD.ClickListener mClickListener;
+    private ViewHolderInformacion.ClickListener mClickListener;
 
     public interface ClickListener{
         void OnItemClick(View view, int position); /*ADMIN PRESIONA EL ITEM*/
     }
 
     //METODO PARA PODER PRESIONAR O MANTENER PRESIONADO UN ITEM
-    public void  setOnClickListener(ViewHolderCD.ClickListener clickListener){
+    public void  setOnClickListener(ViewHolderInformacion.ClickListener clickListener){
         mClickListener = clickListener;
     }
 
-    public ViewHolderCD(@NonNull View itemView) {
+    public ViewHolderInformacion(@NonNull View itemView) {
         super(itemView);
         mView = itemView;
 
@@ -40,23 +37,24 @@ public class ViewHolderCD  extends RecyclerView.ViewHolder {
         });
     }
 
-    public void SeteoCategoriaD(Context context, String categoria, String imagen){
-        ImageView ImagenCategoriaD;
-        TextView NombreCategoriaD;
+    public void SeteoInformacion (Context context, String nombre, String imagen){
+        ImageView ImagenInformativo;
+        TextView TituloinformativoTXT;
 
         //CONEXION CON EL ITEM
-        ImagenCategoriaD = mView.findViewById(R.id.ImagenCategoriaD);
-        NombreCategoriaD = mView.findViewById(R.id.NombreCategoriaD);
+        ImagenInformativo = mView.findViewById(R.id.ImagenInformativo);
+        TituloinformativoTXT = mView.findViewById(R.id.TituloinformativoTXT);
 
-        NombreCategoriaD.setText(categoria);
+        TituloinformativoTXT.setText(nombre);
 
         //CONTROLAR LOS POSIBLES ERRORES
         try{
             //SI LA IMAGEN FUE TRAIDA EXITOSAMENTE
-            Picasso.get().load(imagen).placeholder(R.drawable.categoria).into(ImagenCategoriaD);
+            Picasso.get().load(imagen).placeholder(R.drawable.categoria).into(ImagenInformativo);
         }catch(Exception e){
             //SI LA IMAGEN NO FUE TRAIDA EXITOSAMENTE
-            Picasso.get().load(R.drawable.categoria).into(ImagenCategoriaD);
+            Picasso.get().load(R.drawable.categoria).into(ImagenInformativo);
         }
     }
+
 }

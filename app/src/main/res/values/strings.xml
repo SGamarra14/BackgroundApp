@@ -136,13 +136,24 @@
     <string name="CorreoDetalleAdmin">Correo</string>
     <string name="EdadDetalleAdmin">Edad</string>
 
+    <string name="CategoriasTXT">Categorias</string>
     <string name="NombreCategoriaD">---</string>
+    <string name="MasCategoriasTXT">Más Categorias</string>
+    <string name="NombreCategoriaF">---</string>
+    <string name="InfoTXT">Disfruta de nuestra app</string>
 
+    <!--IMAGEN CAT FIREBASE ELEGIDA-->
+    <string name="NombreImg_Cat_Elegida"> -- </string>
+    <string name="Vista_Img_Cat_Elegida"> -- </string>
+
+    <!--DETALLE IMAGEN-->
     <string name="NombreImagenTXT">Nombre de imagen</string>
-    <string name="NombreImagenDeatlle"> -- </string>
+    <string name="NombreImagenDetalle"> -- </string>
     <string name="VisualizacionTXT">Visualizaciones</string>
     <string name="VistaDetalle"> -- </string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="TituloinformativoTXT"> -- </string>
+
+    <string name="fecha"> -- </string>
+
 </resources>

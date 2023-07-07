@@ -5,9 +5,10 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
+
     <uses-permission android:name="android.permission.CAMERA" /> <!-- permisos escribir en almacenamiento externo -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.SET_WALLPAPER"/>
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
 
     <application
         android:allowBackup="true"
@@ -15,10 +16,13 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
         android:requestLegacyExternalStorage="true"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="31">
+        <activity
+            android:name=".CategoriasClienteFirebase.ListaCategoriaFirebase"
+            android:exported="false" />
         <activity
             android:name=".DetalleCliente.DetalleCliente"
             android:exported="false" />
@@ -87,21 +91,15 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!--AGREGAMOS EL PROVEEDOR DE ARCHIVOS CON EL PROPIO PAQUETE-->
+        </activity> <!-- AGREGAMOS EL PROVEEDOR DE ARCHIVOS CON EL PROPIO PAQUETE -->
         <provider
-            android:authorities="com.grupo3.backgroundapp.fileprovider"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="com.grupo3.backgroundapp.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/files_path"
-                >
-
-            </meta-data>
-
+                android:resource="@xml/files_path"></meta-data>
         </provider>
     </application>
 

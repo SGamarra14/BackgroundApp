@@ -32,7 +32,7 @@
         <!--NOMBRE DE LA IMAGEN-->
         <TextView
             android:id="@+id/NombreImagenDetalle"
-            android:text="@string/NombreImagenDeatlle"
+            android:text="@string/NombreImagenDetalle"
             android:textColor="#000"
             android:gravity="center"
             android:layout_width="match_parent"
