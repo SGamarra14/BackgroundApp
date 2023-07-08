@@ -31,8 +31,7 @@
             android:background="#FA5882"
             android:textColor="#fff"
             android:textSize="18sp"
-            android:gravity="center"
-            />
+            android:gravity="center"/>
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>

@@ -49,10 +49,12 @@ import com.grupo3.backgroundapp.R;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class AgregarVideojuegos extends AppCompatActivity {
 
-    TextView VistaVideojuegos;
+    TextView VistaVideojuegos, IdVideojuegos;
     EditText NombreImagenVideojuegos;
     ImageView ImagenAgregarVideojuegos;
     Button PublicarVideojuegos;
@@ -66,7 +68,7 @@ public class AgregarVideojuegos extends AppCompatActivity {
 
     ProgressDialog progressDialog;
 
-    String rNombre, rImagen, rVista;
+    String rId, rNombre, rImagen, rVista;
 
     int CODIGO_DE_SOLICITUD_IMAGEN = 5;
 
@@ -80,6 +82,7 @@ public class AgregarVideojuegos extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
+        IdVideojuegos = findViewById(R.id.IdVideojuegos);
         VistaVideojuegos = findViewById(R.id.VistaVideojuegos);
         NombreImagenVideojuegos = findViewById(R.id.NombreImagenVideojuegos);
         ImagenAgregarVideojuegos = findViewById(R.id.ImagenAgregarVideojuegos);
@@ -92,11 +95,13 @@ public class AgregarVideojuegos extends AppCompatActivity {
         Bundle intent = getIntent().getExtras();
         if(intent != null) {
             //Recupera datos de la actividad anterior
+            rId = intent.getString("IdEnviado");
             rNombre = intent.getString("NombreEnviado");
             rImagen = intent.getString("ImagenEnviada");
             rVista = intent.getString("VistaEnviada");
 
             //settea los datos
+            IdVideojuegos.setText(rId);
             NombreImagenVideojuegos.setText(rNombre);
             VistaVideojuegos.setText(rVista);
             Picasso.get().load(rImagen).into(ImagenAgregarVideojuegos);
@@ -194,7 +199,7 @@ public class AgregarVideojuegos extends AppCompatActivity {
         com.google.firebase.database.DatabaseReference databaseReference = firebaseDatabase.getReference("VIDEOJUEGOS");
 
         //consulta
-        Query query = databaseReference.orderByChild("nombre").equalTo(rNombre);
+        Query query = databaseReference.orderByChild("id").equalTo(rId);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -242,11 +247,16 @@ public class AgregarVideojuegos extends AppCompatActivity {
 
                             Uri downloadUri = uriTask.getResult();
 
+                            String ID = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss", Locale.getDefault()).format(System.currentTimeMillis());
+                            IdVideojuegos.setText(ID);
+
+                            String mId = IdVideojuegos.getText().toString();
+
                             String mVista = VistaVideojuegos.getText().toString();
                             int VISTA = Integer.parseInt(mVista);
 
                             VideoJuego videoJuego =
-                                    new VideoJuego(downloadUri.toString(),mNombre,VISTA);
+                                    new VideoJuego(mNombre + "/" + mId, downloadUri.toString(),mNombre,VISTA);
                             String ID_IMAGEN = DatabaseReference.push().getKey();
 
                             DatabaseReference.child(ID_IMAGEN).setValue(videoJuego);

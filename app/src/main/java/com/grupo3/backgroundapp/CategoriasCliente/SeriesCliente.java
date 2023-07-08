@@ -24,14 +24,20 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.grupo3.backgroundapp.CategoriasAdmin.PeliculasA.Pelicula;
 import com.grupo3.backgroundapp.CategoriasAdmin.SeriesA.AgregarSerie;
 import com.grupo3.backgroundapp.CategoriasAdmin.SeriesA.Serie;
 import com.grupo3.backgroundapp.CategoriasAdmin.SeriesA.SeriesA;
 import com.grupo3.backgroundapp.CategoriasAdmin.SeriesA.ViewHolderSerie;
 import com.grupo3.backgroundapp.DetalleCliente.DetalleCliente;
 import com.grupo3.backgroundapp.R;
+
+import java.util.HashMap;
 
 public class SeriesCliente extends AppCompatActivity {
 
@@ -44,6 +50,8 @@ public class SeriesCliente extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
     Dialog dialog;
+
+    ValueEventListener valueEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,12 +100,34 @@ public class SeriesCliente extends AppCompatActivity {
                     @Override
                     public void OnItemClick(View view, int position) {
                         //OBTENER LOS DATOS DE LA IMAGEN
+                        String Id = getItem(position).getId();
                         String Imagen= getItem(position).getImagen();
                         String Nombres= getItem(position).getNombre();
-                        int Vistas= getItem(position).getVistas();
+                        final int Vistas= getItem(position).getVistas();
 
                         //CONVERTIR A STRING LA VISTA
                         String VistaString= String.valueOf(Vistas);
+
+                        valueEventListener = mRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for (DataSnapshot ds: snapshot.getChildren()) {
+                                    Serie serie = ds.getValue(Serie.class);
+
+                                    if (serie.getId().equals(Id)) {
+                                        int i = 1;
+                                        HashMap<String, Object> hashMap = new HashMap<>();
+                                        hashMap.put("vistas", Vistas + 1);
+                                        ds.getRef().updateChildren(hashMap);
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
 
                         //PASAMOS A LA ACTIVIDAD DETALLE CLIENTE
                         Intent intent = new Intent(SeriesCliente.this, DetalleCliente.class);
@@ -140,6 +170,14 @@ public class SeriesCliente extends AppCompatActivity {
         super.onStart();
         if(firebaseRecyclerAdapter!=null){
             firebaseRecyclerAdapter.startListening();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mRef != null && valueEventListener != null) {
+            mRef.removeEventListener(valueEventListener);
         }
     }
 

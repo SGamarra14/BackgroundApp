@@ -2,6 +2,7 @@ package com.grupo3.backgroundapp.CategoriasClienteFirebase;
 
 public class ImgCatFirebaseElegida {
 
+    String id;
     String imagen;
     String nombre;
     int vistas;
@@ -10,10 +11,19 @@ public class ImgCatFirebaseElegida {
 
     }
 
-    public ImgCatFirebaseElegida(String imagen, String nombre, int vistas) {
+    public ImgCatFirebaseElegida(String id, String imagen, String nombre, int vistas) {
+        this.id = id;
         this.imagen = imagen;
         this.nombre = nombre;
         this.vistas = vistas;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getImagen() {

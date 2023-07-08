@@ -134,7 +134,7 @@ public class InicioCliente extends Fragment {
     }
 
     private void VerCategoriasF() {
-        optionsF=new FirebaseRecyclerOptions.Builder<CategoriaF>().setQuery(referenceD,CategoriaF.class).build();
+        optionsF=new FirebaseRecyclerOptions.Builder<CategoriaF>().setQuery(referenceF,CategoriaF.class).build();
         firebaseRecyclerAdapterF= new FirebaseRecyclerAdapter<CategoriaF, ViewHolderCF>(optionsF) {
             @Override
             protected void onBindViewHolder(@NonNull ViewHolderCF viewHolderCF, int position, @NonNull CategoriaF categoriaF) {

@@ -19,11 +19,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- ....android:id="@+id/NombreTXTPeliculas" -->
             <TextView
-                android:id="@+id/NombreTXTPeliculas"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/NombreTXTPeliculas" />
+
+            <!-- id -->
+            <TextView
+                android:id="@+id/IdPeliculas"
+                android:text="@string/IdPeliculas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:layout_marginTop="5dp"/>
 
             <EditText
                 android:id="@+id/NombrePeliculas"

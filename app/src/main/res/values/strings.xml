@@ -19,6 +19,7 @@
     <string name="MasOpcionestxt">Más opciones</string>
     <string name="AcercaDe">Acerca de</string>
     <string name="Compartir">Compartir</string>
+    <string name="Administrador">Administrador</string>
 
     <string name="Acceder">Acceder</string>
 
@@ -38,6 +39,9 @@
     <string name="Ingresar">Ingresar</string>
 
     <!-- CATEGORIAS -->
+    <string name="fechaAdmin"> -- </string>
+    <string name="BienvenidoTXT">Bienvenido(a): </string>
+    <string name="NombreTXT"> -- </string>
     <string name="Eligeunacategoriatxt">Elige una categoría</string>
     <string name="Peliculas">Películas</string>
     <string name="Series">Series</string>
@@ -50,24 +54,28 @@
 
 
     <!-- AGREGAR PELICULAS -->
+    <string name="IdPeliculas"> -- </string>
     <string name="NombreTXTPeliculas">Nombre de imagen</string>
     <string name="NombrePeliculas">Escriba el nombre aquí</string>
     <string name="VistaPeliculas">0</string>
     <string name="PublicarPelicula">Publicar</string>
 
     <!-- AGREGAR MUSICA -->
+    <string name="IdMusica"> -- </string>
     <string name="NombreTXTMusica">Nombre de imagen</string>
     <string name="NombreMusica">Escriba el nombre aqui</string>
     <string name="VistaMusica">0</string>
     <string name="PublicarMusica">Publicar</string>
 
     <!-- AGREGAR SERIES -->
+    <string name="IdSerie"> -- </string>
     <string name="NombreTXTSerie">Nombre de imagen</string>
     <string name="NombreSerie">Escriba el nombre aquí</string>
     <string name="VistaSerie">0</string>
     <string name="PublicarSerie">Publicar</string>
 
     <!-- AGREGAR VIDEOJUEGOS -->
+    <string name="IdVideojuegos"> -- </string>
     <string name="NombreTXTVideojuegos">Nombre de imagen</string>
     <string name="NombreVideojuegos">Escriba el nombre aqui</string>
     <string name="VistaVideojuegos">0</string>
@@ -155,5 +163,18 @@
     <string name="TituloinformativoTXT"> -- </string>
 
     <string name="fecha"> -- </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Acerca de aplicacion-->
+    <string name="AcercaDeApp">Acerca de</string>
+    <string name="InfoDesarrollador">Desarrollado por: Grupo 3</string>
+    <string name="InfoCorreo">Correo: grupo3backgroundApp@gmail.com</string>
+    <string name="InfoVersion">Versión: 1.0</string>
+    <string name="InfoRedes">Nuestras redes</string>
+    <string name="Ir_website">Página web</string>
+    <string name="Ir_facebook">Facebook</string>
+    <string name="Ir_instagram">Instagram</string>
+    <string name="Ir_youtube">Youtube</string>
 
 </resources>

@@ -19,12 +19,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- TXT -->
+            <!-- TXT ...android:id="@+id/NombreTXTSerie"-->
             <TextView
-                android:id="@+id/NombreTXTSerie"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/NombreTXTSerie" />
+
+            <!-- id -->
+            <TextView
+                android:id="@+id/IdSerie"
+                android:text="@string/IdSerie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:layout_marginTop="5dp"/>
 
             <!-- NOMBRE DE LA IMAGEN -->
             <EditText

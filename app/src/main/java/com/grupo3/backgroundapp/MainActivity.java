@@ -19,6 +19,7 @@ import com.grupo3.backgroundapp.FragmentosAdministrador.RegistrarAdmin;
 import com.grupo3.backgroundapp.FragmentosCliente.AcerDeCliente;
 import com.grupo3.backgroundapp.FragmentosCliente.CompartirCliente;
 import com.grupo3.backgroundapp.FragmentosCliente.InicioCliente;
+import com.grupo3.backgroundapp.FragmentosCliente.Login_admin;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -67,6 +68,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.Compartir:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new CompartirCliente()).commit();
+                break;
+
+            case R.id.Administrador:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Login_admin()).commit();
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);

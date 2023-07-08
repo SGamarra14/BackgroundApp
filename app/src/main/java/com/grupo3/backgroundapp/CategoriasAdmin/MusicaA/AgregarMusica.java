@@ -48,10 +48,12 @@ import com.grupo3.backgroundapp.R;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class AgregarMusica extends AppCompatActivity {
 
-    TextView VistaMusica;
+    TextView VistaMusica, IdMusica;
     EditText NombreMusica;
     ImageView ImagenAgregarMusica;
     Button PublicarMusica;
@@ -65,7 +67,7 @@ public class AgregarMusica extends AppCompatActivity {
 
     ProgressDialog progressDialog;
 
-    String rNombre, rImagen, rVista;
+    String rId, rNombre, rImagen, rVista;
 
     int CODIGO_DE_SOLICITUD_IMAGEN = 5;
 
@@ -79,6 +81,7 @@ public class AgregarMusica extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
+        IdMusica = findViewById(R.id.IdMusica);
         VistaMusica = findViewById(R.id.VistaMusica);
         NombreMusica = findViewById(R.id.NombreImagen_Musica);
         ImagenAgregarMusica = findViewById(R.id.ImagenAgregarMusica);
@@ -91,11 +94,13 @@ public class AgregarMusica extends AppCompatActivity {
         Bundle intent = getIntent().getExtras();
         if(intent != null) {
             //Recupera datos de la actividad anterior
+            rId = intent.getString("IdEnviado");
             rNombre = intent.getString("NombreEnviado");
             rImagen = intent.getString("ImagenEnviada");
             rVista = intent.getString("VistaEnviada");
 
             //settea los datos
+            IdMusica.setText(rId);
             NombreMusica.setText(rNombre);
             VistaMusica.setText(rVista);
             Picasso.get().load(rImagen).into(ImagenAgregarMusica);
@@ -193,7 +198,7 @@ public class AgregarMusica extends AppCompatActivity {
         DatabaseReference databaseReference = firebaseDatabase.getReference("MUSICA");
 
         //consulta
-        Query query = databaseReference.orderByChild("nombre").equalTo(rNombre);
+        Query query = databaseReference.orderByChild("id").equalTo(rId);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -242,10 +247,15 @@ public class AgregarMusica extends AppCompatActivity {
 
                             Uri downloadUri = uriTask.getResult();
 
+                            String ID = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss", Locale.getDefault()).format(System.currentTimeMillis());
+                            IdMusica.setText(ID);
+
+                            String mId = IdMusica.getText().toString();
+
                             String mVista = VistaMusica.getText().toString();
                             int VISTA = Integer.parseInt(mVista);
 
-                            Musica musica = new Musica(downloadUri.toString(),mNombre,VISTA);
+                            Musica musica = new Musica(mNombre + "/" + mId, downloadUri.toString(),mNombre,VISTA);
                             String ID_IMAGEN = DatabaseReference.push().getKey();
 
                             DatabaseReference.child(ID_IMAGEN).setValue(musica);

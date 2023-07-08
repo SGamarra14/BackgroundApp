@@ -100,7 +100,7 @@ public class PeliculasA extends AppCompatActivity {
 
                     @Override
                     public void OnItemLongClick(View view, int position) {
-
+                        final String Id = getItem(position).getId();
                         final String Nombre = getItem(position).getNombre();
                         final String Imagen = getItem(position).getImagen();
                         int Vista = getItem(position).getVistas();
@@ -115,13 +115,14 @@ public class PeliculasA extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 if (i == 0) {
                                     Intent intent = new Intent(PeliculasA.this, AgregarPelicula.class);
+                                    intent.putExtra("IdEnviado", Id);
                                     intent.putExtra("NombreEnviado", Nombre);
                                     intent.putExtra("ImagenEnviada", Imagen);
                                     intent.putExtra("VistaEnviada", VistaString);
                                     startActivity(intent);
                                 }
                                 if (i == 1) {
-                                    EliminarDatos(Nombre, Imagen);
+                                    EliminarDatos(Id, Imagen);
                                 }
                             }
                         });
@@ -148,7 +149,7 @@ public class PeliculasA extends AppCompatActivity {
         }
     }
 
-    private void EliminarDatos (final String NombreActual, final String ImagenActual){
+    private void EliminarDatos (final String IdActual, final String ImagenActual){
         AlertDialog.Builder builder = new AlertDialog.Builder(PeliculasA.this);
         builder.setTitle("Eliminar");
         builder.setMessage("¿Desea eliminar la imagen?");
@@ -157,7 +158,7 @@ public class PeliculasA extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //ELIMINA DE LA BD
-                Query query = mRef.orderByChild("nombre").equalTo(NombreActual);
+                Query query = mRef.orderByChild("id").equalTo(IdActual);
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
